@@ -28,6 +28,12 @@ const AppContainer = styled.div`
   max-width: 100%;
 `;
 
+const ConteudoGaleria = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
 function App() {
   return (
     <FundoGradiente>
@@ -36,11 +42,13 @@ function App() {
         <Cabecalho />
         <MainContainer>
           <BarraLateral />
-          <Banner
-            texto="A galeria mais completa de fotos do espaço!"
-            backgroundImage={BannerImg}
-          />
-          <Galeria />
+          <ConteudoGaleria>
+            <Banner
+              texto="A galeria mais completa de fotos do espaço!"
+              backgroundImage={BannerImg}
+            />
+            <Galeria />
+          </ConteudoGaleria>
         </MainContainer>
       </AppContainer>
     </FundoGradiente>
