@@ -5,6 +5,7 @@ import Banner from "./componente/Banner";
 import BannerImg from "./assets/banner.png";
 import BarraLateral from "./componente/BarraLateral";
 import Galeria from "./componente/Galeria";
+import Rodape from "./componente/Rodape";
 
 import fotos from "./fotos.json";
 import { useState } from "react";
@@ -24,6 +25,7 @@ const FundoGradiente = styled.div`
 const MainContainer = styled.main`
   display: flex;
   gap: 1.5rem;
+  padding-bottom: 2rem;
 `;
 
 const AppContainer = styled.div`
@@ -41,6 +43,23 @@ const ConteudoGaleria = styled.section`
 function App() {
   const [fotosDagaleria, setFotosdaGaleria] = useState(fotos);
   const [fotoSelecionada, setFotoSelecionada] = useState(null);
+
+  const aoAlternarFavorito = (foto) => {
+    if(foto.id === fotoSelecionada?.id) {
+      setFotoSelecionada({
+        ...fotoSelecionada,
+        favorita: !fotoSelecionada.favorita
+      })
+    }
+
+    setFotosdaGaleria(fotosDagaleria.map(fotoDaGaleria => {
+      return {
+        ...fotoDaGaleria,
+        favorita: fotoDaGaleria.id == foto.id ? !foto.favorita : fotoDaGaleria.favorita
+      }
+    }))
+  }
+
   return (
     <FundoGradiente>
       <EstilosGlobais />
@@ -55,12 +74,17 @@ function App() {
             />
             <Galeria
               aoFotoSelecionada={(foto) => setFotoSelecionada(foto)}
+              aoAlternarFavorito={aoAlternarFavorito}
               fotos={fotosDagaleria}
             />
           </ConteudoGaleria>
         </MainContainer>
       </AppContainer>
-      <ModalZoom foto={fotoSelecionada} />
+      <ModalZoom 
+      foto={fotoSelecionada} 
+      aoFechar={() => setFotoSelecionada(null)}
+      aoAlternarFavorito={aoAlternarFavorito}/>
+      <Rodape/>
     </FundoGradiente>
   );
 }

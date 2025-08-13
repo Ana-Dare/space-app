@@ -47,33 +47,41 @@ const Acoes = styled.div`
   gap: 0.5rem;
 `;
 
-const CardImagem = ({ fotos, aoZoomSolicitado }) => {
+const CardImagem = ({ fotos, aoZoomSolicitado, aoAlternarFavorito }) => {
   return (
     <ContainerCard>
-      {fotos.map((foto) => (
-        <Card key={foto.id}>
-          <img src={foto.path} alt={foto.titulo} />
-          <Informacoes>
-            <Legendas>
-              <h6>{foto.titulo}</h6>
-              <p>{foto.fonte}</p>
-            </Legendas>
-            <Acoes>
-              <IoIosHeartEmpty
-                style={{ cursor: "pointer" }}
-                size={30}
-                color="#fff"
-              ></IoIosHeartEmpty>
-              <RiExpandDiagonalSLine
-                style={{ cursor: "pointer" }}
-                size={30}
-                color="#fff"
-                onClick={() => aoZoomSolicitado(foto)}
-              ></RiExpandDiagonalSLine>
-            </Acoes>
-          </Informacoes>
-        </Card>
-      ))}
+      {fotos.map((foto) => {
+        const iconeFavorito = foto.favorita ? (
+          <IoMdHeart size={25} color="#fff" />
+        ) : (
+          <IoIosHeartEmpty size={25} color="#fff" />
+        );
+        return (
+          <Card key={foto.id}>
+            <img src={foto.path} alt={foto.titulo} />
+            <Informacoes>
+              <Legendas>
+                <h6>{foto.titulo}</h6>
+                <p>{foto.fonte}</p>
+              </Legendas>
+              <Acoes>
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => aoAlternarFavorito(foto)}
+                >
+                  {iconeFavorito}
+                </span>
+                <RiExpandDiagonalSLine
+                  style={{ cursor: "pointer" }}
+                  size={30}
+                  color="#fff"
+                  onClick={() => aoZoomSolicitado(foto)}
+                ></RiExpandDiagonalSLine>
+              </Acoes>
+            </Informacoes>
+          </Card>
+        );
+      })}
     </ContainerCard>
   );
 };

@@ -11,7 +11,7 @@ const SecaoFluida = styled.section`
   flex-grow: 1;
 `;
 
-const Galeria = ({fotos, aoFotoSelecionada}) => {
+const Galeria = ({fotos, aoFotoSelecionada, aoAlternarFavorito}) => {
   return (
     <>
       <Tags />
@@ -20,9 +20,10 @@ const Galeria = ({fotos, aoFotoSelecionada}) => {
           <Titulo>Navegue pela galeria</Titulo>
           <CardImagem 
           aoZoomSolicitado={aoFotoSelecionada}
+          aoAlternarFavorito={aoAlternarFavorito}
           fotos={fotos}></CardImagem>
         </SecaoFluida>
-        <Populares />
+        <Populares/>
       </GaleriaContainer>
     </>
   );
