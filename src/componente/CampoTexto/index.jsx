@@ -24,10 +24,17 @@ const InputSearch = styled.div`
   }
 `;
 
-const CampoDeTexto = (props) => {
+const CampoDeTexto = ({ filtro, setFiltro }) => {
   return (
     <InputSearch>
-      <input placeholder="O que você procura?" {...props} />
+      <input
+        value={filtro}
+        onChange={(evento) => {
+          setFiltro(evento.target.value);
+        }}
+        type="text"
+        placeholder="O que você procura?"
+      />
       <img src={iconSearch} />
     </InputSearch>
   );

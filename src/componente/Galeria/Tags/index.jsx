@@ -35,19 +35,14 @@ const Button = styled.button`
   border-color: ${({ $ativo }) => ($ativo ? "#C98CF1" : "transparent")};
 `;
 
-const Tags = () => {
-  const [tagAtiva, setTagAtiva] = useState(null);
+const Tags = ({setTag}) => {
   return (
     <>
       <ContainerTags>
         <p>Busque por tags:</p>
         <ContainerButton>
           {tags.map((tag) => (
-            <Button
-              key={tag.id}
-              $ativo={tagAtiva === tag.id}
-              onClick={() => setTagAtiva(tag.id)}
-            >
+            <Button key={tag.id} onClick={() => setTag(tag.tag)}>
               {tag.titulo}
             </Button>
           ))}

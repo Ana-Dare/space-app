@@ -11,12 +11,12 @@ const HeaderStylized = styled.header`
   }
 `;
 
-const Cabecalho = () => {
+const Cabecalho = ({filtro, setFiltro}) => {
   return (
     <>
       <HeaderStylized>
         <img src="/icones/logo.png" alt="Logo" />
-        <CampoDeTexto />
+        <CampoDeTexto filtro={filtro} setFiltro={setFiltro}/>
       </HeaderStylized>
     </>
   );
